@@ -2,16 +2,13 @@
 const express = require('express');
 const app = express()
 const port = 3000
+const host = '127.0.0.1'
 
-app.get("/", (req,res)=>{
-  res.status(200).json("Home in server side.")
-})
-
-app.post("/",(req,res)=>{
-  res.send("POST REQUEST")
+app.get('/api/v1/tours', (req, res) =>{
+  res.send("Hello")
 })
 
 
 app.listen(port,()=>{
-  console.log("listening on port " + port )
+  console.log(`starting server on http://${host}/${port}` )
 })
