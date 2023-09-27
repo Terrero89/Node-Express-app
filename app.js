@@ -1,16 +1,33 @@
 const fs = require("fs");
 const express = require("express");
 const app = express();
-const port = 3000;
+
 
 app.use(express.json()); //middleware
+
+
+app.use((req, res, next) => {
+  console.log("HELLO FROM MIDDLEWARE ")
+  next();
+})
+
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString()
+  next()
+})
+
+
+
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 ); //parsin to be ablke to use file with data
 
 const getAllTours = (req, res) => {
+  console.log(req.requestTime)
   res.status(200).json({
     stats: "success", //status that will be used
+    requestedAt: req.requestTime,
     results: tours.length, //for more than `1 knowing the len of the data
     data: {
       tours,
@@ -98,13 +115,24 @@ const deleteTour = (req, res) => {
 // app.patch('/api/v1/tours/:id',updateTour)
 // app.delete('/api/v1/tours/:id',deleteTour)
 
-app.route("/api/v1/tours").get(getAllTours).post(createTour);
+app.route("/api/v1/tours")
+.get(getAllTours)
+.post(createTour);
+
+
+
+
+
+
 app
   .route("/api/v1/tours/:id")
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
 
+
+
+const port = 3000;
 app.listen(port, () => {
   console.log(`starting server on port ${port}`);
 });
