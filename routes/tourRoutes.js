@@ -5,14 +5,14 @@ const fs = require("fs");
 const tourController = require("./../controllers/tourController");
 
 
-const tourRouter = express.Router()
+
 
 router.param('id',tourController.checkID);
  
-tourRouter.route("/")
+router.route("/")
 .get(tourController.getAllTours)
 .post(tourController.createTour);
-tourRouter
+router
   .route("/:id")
   .get(tourController.getTour)
   .patch(tourController.updateTour)
@@ -23,4 +23,4 @@ tourRouter
 
 
 
-module.exports = tourRouter;
+module.exports = router;
