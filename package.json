@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start:dev": "nodemon server.js",
-    "start:prod":"NODE_ENV=production nodemon server.js"
+    "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -19,5 +19,16 @@
   "description": "big api for practice",
   "main": "app.js",
   "author": "Sergio",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.0.3"
+  }
 }
